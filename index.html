@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>full-build - agile workspace management for enterprise projects</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="build workspace management .net full partial solution project git mercurial msbuild collaborative incremental versioning">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/full-build.io.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+    <script src="/js/core.js"></script>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-fullbuild">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#full-build-about"><span><img style="margin-top:-3px" src="img/FullBuildLogo.svg"> full-build</span></a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+            <div class="collapse navbar-collapse" id="navbar-fullbuild">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="#full-build-about">about</a>
+                    </li>
+                    <li>
+                        <a href="#full-build-why">why</a>
+                    </li>
+                    <li>
+                        <a href="#full-build-how-to">how to</a>
+                    </li>
+                    <li>
+                        <a href="#full-build-contribute">contribute</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <div class="container-fluid">
+
+        <div class="row anchor" id="full-build-about">
+            <div class="col-xs-12 top paragraph">
+                <!-- img class="drawing" src="img/how-it-works.jpg" width="50%" style="float:right" / -->
+                <p class="title">
+                    About
+                </p>
+                <p>
+                    Entreprise applications are characterized by their size. They are usually splitted in several solutions to help developers deals with this fact but this poses serious problems when it's time to build and do refactoring. Time passes on and projects are less and less maintainable due to abondance of solution files, NuGet, lack of consistency and difficulties to refactor applications.
+                    <br>
+                    <br> So here is full-build : a smart build system to help you manage the increasing complexity of your (big) software and keep using tools you know and love (Visual Studio, Xamarin, command line tools, NuGet...) under the environment you love (Windows, OSX, Linux, .net, Mono).
+                    <br>
+                    <br> full-build brings to .net developers a workspace where magic happens :
+                    <ul>
+                        <li>Create custom solutions with only required projects</li>
+                        <li>Switch dependencies as binary references or project references in a snap</li>
+                        <li>Manage external package references (NuGet) globally instead at project level</li>
+                        <li>Manage sources from different repositories</li>
+                        <li>Favor code review thanks to partial build</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="row anchor" id="full-build-why">
+            <div class="col-xs-12 paragraph">
+                <p class="title">
+                    Why ?
+                </p>
+                <p>
+                    Face the facts:
+                    <ul>
+                        <li>NuGet is awful when used to store teams artifacts - it must only be used to reference external dependencies</li>
+                        <li>Solution files are not good to manage enterprise point of view (global consistency) and developer point of view (local development)</li>
+                        <li>Global consistency is required to ensure the whole system can be rebuilt from sources only</li>
+                        <li>Developers do not want to (re)build everything to start coding</li>
+                    </ul>
+                </p>
+                <p>In a nutshell, full-build provides following benefits:
+                    <ul>
+                        <li>Manage teams repositories (git or mercurial) as single workspace</li>
+                        <li>Handle NuGet packages consistency at workspace level</li>
+                        <li>Allow a full consistent build (all sources + NuGet) for CI</li>
+                        <li>Focus developer on selected repositories (local builds based on full build outputs)</li>
+                        <li>Promote code review and low-coupling between developers</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="row anchor" id="full-build-how-to">
+            <div class="col-xs-12 top paragraph">
+                <p class="title">
+                    How to
+                </p>
+                <p>
+                    The full build is usually running on your CI server. This build produces all the artifacts required for partial builds. Partial builds are running on development computers - based on artifacts produced by the full build.
+                </p>
+                <p>
+                    To achieve this, full-build lets you define the universe of all projects (it's called an anthology) - it can be splitted among different repositories (if you have different teams working on different products). Note that projects are converted to work with full-build. They are still regular *proj using MsBuild but are adapted in a way to allow partial builds (you can still use MsBuild, XBuild, VisualStudio or Xamarin Studio).
+                </p>
+                <p>
+                    Once the anthology is built, developers can work using partial builds and still resynchronize with master build when they are required to.
+                </p>
+                <p>
+                    Download following tools, unzip them in your tools folder and ensure they are available in your path:
+                    <ul>
+                        <li><a href="https://github.com/pchalamet/full-build/releases">full-build</a>
+                        </li>
+                        <li><a href="https://fsprojects.github.io/Paket">Paket</a>
+                        </li>
+                        <li><a href="http://www.nunit.org">NUnit</a>
+                        </li>
+                        <li>MsBuild : version must be greater than 12 (&gt;= Visual Studio 2013)
+                        </li>
+                        <li><a href="http://fsharp.org/use/windows/">F#</a> : only if using Visual Studio 2013 otherwise add language support
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    To use full-build, you will need to create:
+                    <ul>
+                        <li>master repository : first of all, create an empty repository (either Git, Gerrit or Mercurial). This will be the master repository. Ensure developers have read access. Allow write access to people in charge of configuration.</li>
+                        <li>master artifacts : then create a public share. Full build artifacts will be pushed there and should be available to anyone. Ensure everyone has read access. Allow write access to people in charge of configuration (including CI).</li>
+                    </ul>
+                </p>
+                <p>
+                    In tutorial, you will learn to configure full-build and use it on two repositories:
+                    <ul>
+                        <li><a href="https://github.com/pchalamet/cassandra-sharp">cassandra-sharp</a>
+                        </li>
+                        <li><a href="https://github.com/pchalamet/cassandra-sharp-contrib">cassandra-sharp-contrib</a>
+                        </li>
+                    </ul>
+                </p>
+                <p>
+                    The goal is to setup a workspace using given repositories, getting rid of NuGet packages and build everything from sources only.
+                </p>
+            </div>
+        </div>
+
+        <div class="row anchor">
+            <div class="col-xs-12 paragraph">
+                <p class="title">
+                    Tutorial
+                </p>
+                <p>
+                    This tutorial assumes following configuration:
+                    <ul>
+                        <li>master repository : https://github.com/pchalamet/cassandra-sharp-full-build</li>
+                        <li>master artifacts : \\buildartifacts\buildoutput</li>
+                    </ul>
+                </p>
+                <p>
+                    Create a new workspace using command:
+                    <p class="code">
+                        fullbuild setup git https://github.com/pchalamet/cassandra-sharp-full-build \\buildartifacts\buildoutput c:\src\myworkspace
+                        <br> cd c:\src\myworkspace
+                    </p>
+                    <p>
+                        Under c:\src\myworkspace, full-build has initialized everything to start a new anthology configuration from scratch. Now, you can start adding external repositories. They have to be converted later to be compatible with full-build.
+                        <br>
+                        <br>Add nuget sources:
+                    </p>
+                    <p class="code">
+                        fullbuild add nuget https://www.nuget.org/api/v2/
+                    </p>
+                    <p>
+                        <br>Add repositories using command:
+                    </p>
+                    <p class="code">
+                        fullbuild add repo cassandra-sharp msbuild https://github.com/pchalamet/cassandra-sharp
+                        <br>fullbuild add repo cassandra-sharp-contrib msbuild https://github.com/pchalamet/cassandra-sharp-contrib
+                    </p>
+                    <p>
+                        <br>Now clone all repositories:
+                    </p>
+                    <p class="code">
+                        fullbuild clone *
+                    </p>
+
+                    <p>
+                        <br>It's now time to convert everything and see the benefits of full-build:
+                    </p>
+                    <p class="code">
+                        fullbuild index
+                        <br>fullbuild convert
+                    </p>
+                    <p>
+                        If everything is ok, you have now successfuly added projects to the anthology.
+                    </p>
+                    <p>
+                        <br>You can now start building and check if everything is ok:
+                    </p>
+                    <p class="code">
+                        fullbuild view all *
+                        <br>fullbuild build all
+                    </p>
+                    <p>
+                        <br>And voilà, you are all set! Eventually commit and push everything to start collaborating with your teams:
+                    </p>
+                    <p class="code">
+                        fullbuild exec --all "echo *** committing %FB_NAME% &amp;&amp; git co -m conversion"
+                        <br>fullbuild push
+                    </p>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-xs-12 top paragraph">
+                <p class="title">
+                    Steps to configure Continuous Integration (CI role is to build all sources)
+                </p>
+                <p>
+                    Following steps must be orchestrated on CI:
+                    <ul>
+                        <li>clone master repository (fullbuild init <strong>folder</strong> <strong>master repository</strong>)</li>
+                        <li>cd <strong>folder</strong>
+                        </li>
+                        <li>clone all respositories using full-build (fullbuild clone *)</li>
+                        <li>generate a view with all sources (fullbuild view all *)</li>
+                        <li>build all sources (fullbuild build all)</li>
+                        <li>test assemblies (fullbuild test *)</li>
+			<li>generate change log (fullbuild history)</li>
+                        <li>generate a new version (fullbuild push)</li>
+                </p>
+            </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-xs-12 top paragraph">
+                <p class="title">
+                    Steps to create partial build (Developer environment or CI partial build)
+                </p>
+                <p>
+                    <ul>
+                        <li> clone master repository (fullbuild init <strong>folder</strong> <strong>master repository</strong>)</li>
+                        <li>cd <strong>folder</strong>
+                        </li>
+                        <li>clone required repositories (fullbuild clone <strong>repoName</strong>)</li>
+                        <li>build a view with all sources (fullbuild add view mypartialview repoName/*)</li>
+                        <li>build view sources (fullbuild build mypartialview)</li>
+			<li>generate change log (fullbuild history)</li>
+                    </ul>
+                </p>
+            </div>
+        </div>
+
+        <div class="row anchor" id="full-build-contribute">
+            <div class="col-xs-12 paragraph">
+                <a href="https://github.com/full-build/full-build"><img style="position: absolute; top: 0; right: 0; border: 0; width: 149px; height: 149px;" src="http://aral.github.com/fork-me-on-github-retina-ribbons/right-orange@2x.png" alt="Fork me on GitHub">
+                </a>
+                <p class="title">
+                    Contribute
+                </p>
+                <p>
+                    full-build is open source software and licensed under <a href="https://raw.githubusercontent.com/full-build/full-build/master/license.txt">Apache License 2.0</a>.
+                </p>
+                <p>
+                    <a href="https://github.com/full-build/full-build">Source code</a> as well <a href="https://github.com/full-build/full-build/wiki">documentation</a> are available on <a href="https://github.com/full-build/full-build">GitHub</a>.
+                </p>
+                <p>
+                    Latest build status on <a href="https://ci.appveyor.com/project/pchalamet/full-build">AppVeyor</a> is
+                    <a href="https://ci.appveyor.com/project/pchalamet/full-build/branch/master">
+                        <img id="buildstatus" src="https://ci.appveyor.com/api/projects/status/github/pchalamet/full-build?branch=master" />
+                    </a>.
+                </p>
+                <p>
+                    Binary distribution is available on <a href="https://github.com/full-build/full-build/releases">GitHub</a>.
+                </p>
+                <p>
+                    (c) 2014-2016 <a href="https://github.com/pchalamet">Pierre Chalamet</a>
+                </p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
