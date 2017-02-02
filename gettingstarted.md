@@ -76,14 +76,13 @@ fullbuild test all
 And voilà, you are all set! Eventually commit and push everything to start collaborating with your teams:
 
 {% highlight Batchfile %}
-fullbuild exec --all "echo *** committing %FB_NAME% && git co -m conversion" 
-fullbuild push
+fullbuild exec --all "echo *** committing %FB_NAME% && git co -m conversion && git push" 
 {% endhighlight %}
 
 # Steps to configure Continuous Integration (CI role is to build all sources)
 Following steps must be orchestrated on CI:
 
-  * clone master repository (_fullbuild init folder master repository_)
+  * clone master repository (_fullbuild init folder master_repository_)
   * cd folder
   * clone all respositories using full-build (_fullbuild clone *_)
   * generate a view with all sources (_fullbuild view all *_`)
@@ -91,10 +90,11 @@ Following steps must be orchestrated on CI:
   * test assemblies (_fullbuild test all_)
   * generate change log (_fullbuild history_)
   * generate a new version (_fullbuild publish_)
+  * publish artifacts and create a baseline (_fullbuild push_)
 
 # Steps to create partial build (Developer environment or CI partial build)
 
-  * clone master repository (_fullbuild init folder master repository_)
+  * clone master repository (_fullbuild init folder master_repository_)
   * cd folder
   * clone required repositories (_fullbuild clone repoName_)
   * build a view with sources selection filter (_fullbuild view mypartialview repoName/*_)
