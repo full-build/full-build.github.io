@@ -50,4 +50,4 @@ Binary distribution is available on [GitHub](https://github.com/full-build/full-
 
 full-build is open source software and licensed under [Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
-(c) 2014-2016 [Pierre Chalamet](https://www.linkedin.com/in/pierrechalamet)
+(c) 2014-2017 [Pierre Chalamet](https://www.linkedin.com/in/pierrechalamet)
