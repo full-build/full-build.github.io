@@ -44,13 +44,13 @@ Under c:\src\myworkspace, full-build has initialized everything to start a new a
 
 Add nuget sources:
 {% highlight Batchfile %}
-fullbuild add nuget https://www.nuget.org/api/v2/
+fullbuild nuget add https://www.nuget.org/api/v2/
 {% endhighlight %}
 
 Add repositories using command:
 {% highlight Batchfile %}
-fullbuild add repo cassandra-sharp https://github.com/pchalamet/cassandra-sharp 
-fullbuild add repo cassandra-sharp-contrib https://github.com/pchalamet/cassandra-sharp-contrib
+fullbuild repo add cassandra-sharp https://github.com/pchalamet/cassandra-sharp 
+fullbuild repo add cassandra-sharp-contrib https://github.com/pchalamet/cassandra-sharp-contrib
 {% endhighlight %}
 
 Now clone all repositories:
@@ -60,7 +60,6 @@ fullbuild clone *
 
 It's now time to convert everything and see the benefits of full-build:
 {% highlight Batchfile %}
-fullbuild index * 
 fullbuild convert *
 {% endhighlight %}
 
@@ -91,13 +90,13 @@ Following steps must be orchestrated on CI:
   * build all sources (_fullbuild build all_)
   * test assemblies (_fullbuild test all_)
   * generate change log (_fullbuild history_)
-  * generate a new version (_fullbuild push_)
+  * generate a new version (_fullbuild publish_)
 
 # Steps to create partial build (Developer environment or CI partial build)
 
   * clone master repository (_fullbuild init folder master repository_)
   * cd folder
   * clone required repositories (_fullbuild clone repoName_)
-  * build a view with sources selection filter (_fullbuild add view mypartialview repoName/*_)
+  * build a view with sources selection filter (_fullbuild view mypartialview repoName/*_)
   * build view sources (_fullbuild build mypartialview_)
   * test view sources (_fullbuild test mypartialview_)
